@@ -9,11 +9,24 @@ import UIKit
 
 class PlayerViewController: UIViewController {
 
+    private static let kTintColor: UIColor = .white
+
     private let album: Album
 
     private var currentSong: Song {
         didSet {
             songName.text = currentSong.name
+            songDuration.text = formatter.string(from: currentSong.duration)
+            songProgressView.setProgress(0, animated: true)
+            currentSongProgress = 0
+        }
+    }
+
+    private var currentSongProgress: TimeInterval = 0 {
+        didSet {
+            currentSongProgressLabel.text = formatter.string(from: currentSongProgress)
+            let progress = currentSongProgress/currentSong.duration
+            songProgressView.setProgress(Float(progress), animated: true)
         }
     }
 
@@ -41,14 +54,36 @@ class PlayerViewController: UIViewController {
     private let songName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .white
+        label.textColor = kTintColor
         return label
     }()
 
     private let songAuthor: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = kTintColor
         return label
+    }()
+
+    private let currentSongProgressLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = kTintColor
+        return label
+    }()
+
+    private let songDuration: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = kTintColor
+        label.textAlignment = .right
+        return label
+    }()
+
+    private let songProgressView: UIProgressView = {
+        let progressView = UIProgressView()
+        progressView.progressTintColor = kTintColor
+        progressView.progress = 0.0
+        return progressView
     }()
 
     private let controlsStackView: UIStackView = {
@@ -67,11 +102,15 @@ class PlayerViewController: UIViewController {
     }()
 
     private lazy var playPause: UIButton = {
-        let button = getControlButton(imageName: "play.fill",
+        let button = getControlButton(imageName: "pause.fill",
                                       selector: #selector(playPauseButtonTapped))
-        button.setImage(UIImage(systemName: "pause.fill"), for: .selected)
+        button.setImage(UIImage(systemName: "play.fill"), for: .selected)
         return button
     }()
+
+    private var isPause: Bool {
+        playPause.isSelected
+    }
 
     private lazy var nextSong: UIButton = {
         let button = getControlButton(imageName: "forward.fill",
@@ -84,7 +123,7 @@ class PlayerViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 10
-        slider.tintColor = .white
+        slider.tintColor = PlayerViewController.kTintColor
         slider.value = 5
         return slider
     }()
@@ -92,6 +131,8 @@ class PlayerViewController: UIViewController {
     private lazy var cursor = Cursor<Song>(currentIndex: album.songs.firstIndex(where: { $0 == currentSong }) ?? 0,
                                            array: album.songs)
 
+
+    private let formatter = DateComponentsFormatter()
 
     init(album: Album, song: Song) {
         self.album = album
@@ -110,27 +151,37 @@ class PlayerViewController: UIViewController {
         setupControlsStackView()
         setupViews()
 
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+
         albumArtwork.image = album.artwork
         songName.text = currentSong.name
         songAuthor.text = album.author
+        songDuration.text = formatter.string(from: currentSong.duration)
+        currentSongProgressLabel.text = formatter.string(from: 0)
+
+
+
+
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
 
-    func getControlButton(imageName: String, selector: Selector) -> UIButton {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: imageName), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.tintColor = .white
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        button.contentScaleFactor = 0.5
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        return button
+    @objc func update() {
+        if isPause {
+            return
+        } else if currentSongProgress == currentSong.duration {
+            nextButtonTapped()
+        } else {
+            currentSongProgress += 1
+        }
     }
 
     @objc func previousButtonTapped() {
         if cursor.moveToPrevious() {
             currentSong = cursor.currentItem
+        } else {
+            playPause.isSelected = true
         }
     }
 
@@ -141,6 +192,8 @@ class PlayerViewController: UIViewController {
     @objc func nextButtonTapped() {
         if cursor.moveToNext() {
             currentSong = cursor.currentItem
+        } else {
+            playPause.isSelected = true
         }
     }
 
@@ -163,8 +216,59 @@ class PlayerViewController: UIViewController {
         mainStackView.addArrangedSubview(songName)
         mainStackView.setCustomSpacing(5, after: songName)
         mainStackView.addArrangedSubview(songAuthor)
+        mainStackView.addArrangedSubview(getTimeLabelsView())
+        mainStackView.addArrangedSubview(songProgressView)
         mainStackView.addArrangedSubview(controlsStackView)
+        mainStackView.addArrangedSubview(getVolumeSliderView())
+    }
 
+    func getTimeLabelsView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        view.addSubview(currentSongProgressLabel)
+        view.addSubview(songDuration)
+
+        NSLayoutConstraint.activate([
+            currentSongProgressLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
+            currentSongProgressLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            currentSongProgressLabel.rightAnchor.constraint(equalTo: view.centerXAnchor),
+            currentSongProgressLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            songDuration.leftAnchor.constraint(equalTo: view.centerXAnchor),
+            songDuration.topAnchor.constraint(equalTo: view.topAnchor),
+            songDuration.rightAnchor.constraint(equalTo: view.rightAnchor),
+            songDuration.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        return view
+    }
+
+    func getControlButton(imageName: String, selector: Selector) -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: imageName), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.tintColor = PlayerViewController.kTintColor
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.contentScaleFactor = 0.5
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        return button
+    }
+
+    func setupControlsStackView() {
+        controlsStackView.addArrangedSubview(previousSong)
+        controlsStackView.addArrangedSubview(playPause)
+        controlsStackView.addArrangedSubview(nextSong)
+
+        NSLayoutConstraint.activate([
+            previousSong.widthAnchor.constraint(equalTo: previousSong.heightAnchor),
+            playPause.widthAnchor.constraint(equalTo: playPause.heightAnchor),
+            nextSong.widthAnchor.constraint(equalTo: nextSong.heightAnchor)
+        ])
+    }
+
+    func getVolumeSliderView() -> UIView {
         let volumeControlsStackView = UIStackView()
         volumeControlsStackView.axis = .horizontal
         volumeControlsStackView.distribution = .fill
@@ -178,18 +282,6 @@ class PlayerViewController: UIViewController {
         maxVolume.tintColor = .white
         maxVolume.contentMode = .scaleAspectFit
         volumeControlsStackView.addArrangedSubview(maxVolume)
-        mainStackView.addArrangedSubview(volumeControlsStackView)
-    }
-
-    func setupControlsStackView() {
-        controlsStackView.addArrangedSubview(previousSong)
-        controlsStackView.addArrangedSubview(playPause)
-        controlsStackView.addArrangedSubview(nextSong)
-
-        NSLayoutConstraint.activate([
-            previousSong.widthAnchor.constraint(equalTo: previousSong.heightAnchor),
-            playPause.widthAnchor.constraint(equalTo: playPause.heightAnchor),
-            nextSong.widthAnchor.constraint(equalTo: nextSong.heightAnchor)
-        ])
+        return volumeControlsStackView
     }
 }
