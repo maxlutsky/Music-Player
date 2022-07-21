@@ -18,9 +18,11 @@ class AlbumCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        titlesContainerView.backgroundColor = .systemGray3
+        titlesContainerView.backgroundColor = Constants.itemColor
         titlesContainerView.layer.cornerRadius = kCornerRadius
         albumArtworkView.layer.cornerRadius = kCornerRadius
+        albumTitle.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+
     }
 
     override func prepareForReuse() {

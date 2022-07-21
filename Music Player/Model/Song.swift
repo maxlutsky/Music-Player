@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Song {
+struct Song: Equatable {
     let name: String
     let duration: TimeInterval
 
@@ -16,7 +16,7 @@ struct Song {
          Song(name: "Bicycle Race", duration: 180),
          Song(name: "Keep Yourself Alive", duration: 230),
          Song(name: "Killer Queen", duration: 180),
-         Song(name: "Cool cat", duration: 210)]
+         Song(name: "Cool Cat", duration: 210)]
     }
 }
 

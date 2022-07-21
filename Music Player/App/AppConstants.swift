@@ -11,8 +11,8 @@ class Constants {
 
     private init() {}
 
-    static let backgroundColor: UIColor = .systemGray5
-    static let itemColor: UIColor = .systemGray3
+    static let backgroundColor: UIColor = .systemBackground
+    static let itemColor: UIColor = .clear
 }
 
 

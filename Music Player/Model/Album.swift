@@ -31,9 +31,9 @@ struct Album {
                songs: Song.getMockSongs(),
                author: "Queen",
                artwork: UIImage(named: "Queen")),
-         Album(title: "Sheer Heart Attacck",
+         Album(title: "Sheer Heart Attack",
                songs: Song.getMockSongs(),
                author: "Queen",
-               artwork: UIImage(named: "SheerHeartAttacck"))]
+               artwork: UIImage(named: "SheerHeartAttack"))]
     }
 }

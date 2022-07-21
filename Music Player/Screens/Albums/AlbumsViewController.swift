@@ -19,6 +19,7 @@ class AlbumsViewController: UIViewController {
         layout.minimumInteritemSpacing = 10
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -32,14 +33,13 @@ class AlbumsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
 
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
         collectionView.delegate = self
@@ -70,7 +70,11 @@ extension AlbumsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(albums[indexPath.row])
+        if indexPath.row < albums.count {
+            let album = albums[indexPath.row]
+            let vc = AlbumSongsViewController(album: album)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }

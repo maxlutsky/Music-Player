@@ -15,6 +15,11 @@
 		950C52E32887FC740023A13C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C52E22887FC740023A13C /* Song.swift */; };
 		950C52E52887FD1D0023A13C /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C52E42887FD1C0023A13C /* Album.swift */; };
 		95394EF6288947FD00C817AA /* AlbumSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95394EF5288947FD00C817AA /* AlbumSongsViewController.swift */; };
+		95394EF928894F8900C817AA /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95394EF728894F8900C817AA /* SongTableViewCell.swift */; };
+		95394EFA28894F8900C817AA /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95394EF828894F8900C817AA /* SongTableViewCell.xib */; };
+		95394EFC28897C3600C817AA /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95394EFB28897C3600C817AA /* PlayerViewController.swift */; };
+		95394EFE2889C14800C817AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95394EFD2889C14800C817AA /* Extensions.swift */; };
+		95394F002889C7C800C817AA /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95394EFF2889C7C800C817AA /* Cursor.swift */; };
 		95B271522889308C001E26CB /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B271502889308C001E26CB /* AlbumCollectionViewCell.swift */; };
 		95B271532889308C001E26CB /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B271512889308C001E26CB /* AlbumCollectionViewCell.xib */; };
 		95B27155288939AE001E26CB /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B27154288939AE001E26CB /* AppConstants.swift */; };
@@ -31,6 +36,11 @@
 		950C52E22887FC740023A13C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		950C52E42887FD1C0023A13C /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		95394EF5288947FD00C817AA /* AlbumSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSongsViewController.swift; sourceTree = "<group>"; };
+		95394EF728894F8900C817AA /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		95394EF828894F8900C817AA /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
+		95394EFB28897C3600C817AA /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		95394EFD2889C14800C817AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		95394EFF2889C7C800C817AA /* Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cursor.swift; sourceTree = "<group>"; };
 		95B271502889308C001E26CB /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		95B271512889308C001E26CB /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
 		95B27154288939AE001E26CB /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppConstants.swift; path = "Music Player/App/AppConstants.swift"; sourceTree = SOURCE_ROOT; };
@@ -82,6 +92,7 @@
 				950C52D02887F82A0023A13C /* SceneDelegate.swift */,
 				950C52D92887F82E0023A13C /* LaunchScreen.storyboard */,
 				950C52DC2887F82E0023A13C /* Info.plist */,
+				95394EFD2889C14800C817AA /* Extensions.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -89,8 +100,8 @@
 		95B2714B288805A8001E26CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				950C52E22887FC740023A13C /* Song.swift */,
 				950C52E42887FD1C0023A13C /* Album.swift */,
+				950C52E22887FC740023A13C /* Song.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,9 +109,9 @@
 		95B2714C2889302F001E26CB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				95B2714F28893044001E26CB /* Player */,
-				95B2714E2889303D001E26CB /* AlbumSongs */,
 				95B2714D28893037001E26CB /* Albums */,
+				95B2714E2889303D001E26CB /* AlbumSongs */,
+				95B2714F28893044001E26CB /* Player */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -119,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				95394EF5288947FD00C817AA /* AlbumSongsViewController.swift */,
+				95394EF728894F8900C817AA /* SongTableViewCell.swift */,
+				95394EF828894F8900C817AA /* SongTableViewCell.xib */,
 			);
 			path = AlbumSongs;
 			sourceTree = "<group>";
@@ -126,6 +139,8 @@
 		95B2714F28893044001E26CB /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				95394EFB28897C3600C817AA /* PlayerViewController.swift */,
+				95394EFF2889C7C800C817AA /* Cursor.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -188,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95394EFA28894F8900C817AA /* SongTableViewCell.xib in Resources */,
 				950C52DB2887F82E0023A13C /* LaunchScreen.storyboard in Resources */,
 				95B271532889308C001E26CB /* AlbumCollectionViewCell.xib in Resources */,
 				950C52D82887F82E0023A13C /* Assets.xcassets in Resources */,
@@ -206,9 +222,13 @@
 				950C52D32887F82A0023A13C /* AlbumsViewController.swift in Sources */,
 				95394EF6288947FD00C817AA /* AlbumSongsViewController.swift in Sources */,
 				950C52CF2887F82A0023A13C /* AppDelegate.swift in Sources */,
+				95394F002889C7C800C817AA /* Cursor.swift in Sources */,
 				95B27155288939AE001E26CB /* AppConstants.swift in Sources */,
+				95394EF928894F8900C817AA /* SongTableViewCell.swift in Sources */,
 				950C52D12887F82A0023A13C /* SceneDelegate.swift in Sources */,
 				950C52E52887FD1D0023A13C /* Album.swift in Sources */,
+				95394EFE2889C14800C817AA /* Extensions.swift in Sources */,
+				95394EFC28897C3600C817AA /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

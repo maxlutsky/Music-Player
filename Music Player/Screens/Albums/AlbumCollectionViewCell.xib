@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="180" height="244"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cje-IV-CHz">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volu" translatesAutoresizingMaskIntoConstraints="NO" id="Cje-IV-CHz">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Cje-IV-CHz" secondAttribute="height" id="aLs-CM-4sG"/>
@@ -25,8 +25,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ww2-PD-6ja">
                         <rect key="frame" x="0.0" y="188" width="180" height="56"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="DoH-KB-RPE">
-                                <rect key="frame" x="8" y="0.0" width="42" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoH-KB-RPE">
+                                <rect key="frame" x="8" y="0.0" width="164" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="32V-Jg-133"/>
                                 </constraints>
@@ -34,8 +34,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="lQo-cN-GOh">
-                                <rect key="frame" x="8" y="25" width="35.5" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQo-cN-GOh">
+                                <rect key="frame" x="8" y="25" width="164" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="wOW-oi-pGk"/>
                                 </constraints>
@@ -48,6 +48,8 @@
                         <constraints>
                             <constraint firstItem="DoH-KB-RPE" firstAttribute="top" secondItem="Ww2-PD-6ja" secondAttribute="top" id="0tm-jR-pNN"/>
                             <constraint firstItem="lQo-cN-GOh" firstAttribute="top" secondItem="DoH-KB-RPE" secondAttribute="bottom" id="4Y7-BL-1RF"/>
+                            <constraint firstAttribute="trailing" secondItem="DoH-KB-RPE" secondAttribute="trailing" constant="8" id="8TM-Oh-2BI"/>
+                            <constraint firstAttribute="trailing" secondItem="lQo-cN-GOh" secondAttribute="trailing" constant="8" id="Rf4-GN-ydd"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lQo-cN-GOh" secondAttribute="bottom" constant="5" id="Y1M-gq-d50"/>
                             <constraint firstItem="lQo-cN-GOh" firstAttribute="leading" secondItem="DoH-KB-RPE" secondAttribute="leading" id="oQm-R5-4xK"/>
                             <constraint firstItem="DoH-KB-RPE" firstAttribute="leading" secondItem="Ww2-PD-6ja" secondAttribute="leading" constant="8" id="z7t-c0-2s0"/>
@@ -76,4 +78,7 @@
             <point key="canvasLocation" x="75.362318840579718" y="38.169642857142854"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="volu" width="128" height="128"/>
+    </resources>
 </document>
