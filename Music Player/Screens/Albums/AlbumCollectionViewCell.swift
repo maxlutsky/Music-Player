@@ -9,8 +9,6 @@ import UIKit
 
 class AlbumCollectionViewCell: UICollectionViewCell {
 
-    private let kCornerRadius: CGFloat = 10
-
     @IBOutlet weak var albumArtworkView: UIImageView!
     @IBOutlet weak var albumTitle: UILabel!
     @IBOutlet weak var albumAuthor: UILabel!
@@ -19,9 +17,9 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         titlesContainerView.backgroundColor = Constants.itemColor
-        titlesContainerView.layer.cornerRadius = kCornerRadius
-        albumArtworkView.layer.cornerRadius = kCornerRadius
-        albumTitle.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titlesContainerView.layer.cornerRadius = Constants.cornerRadius
+        albumArtworkView.layer.cornerRadius = Constants.cornerRadius
+        albumTitle.font = Constants.headerFont
 
     }
 

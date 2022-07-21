@@ -13,6 +13,9 @@ class Constants {
 
     static let backgroundColor: UIColor = .systemBackground
     static let itemColor: UIColor = .clear
+    static let defaultSpacing: CGFloat = 10
+    static let headerFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .bold)
+    static let cornerRadius: CGFloat = 10
 }
 
 

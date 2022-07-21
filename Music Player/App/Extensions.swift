@@ -2,36 +2,37 @@
 //  Extensions.swift
 //  Music Player
 //
-//  Created by Maksym Lutskyi on 21.07.2022.
+//  Created by Maksym Lutskyi on 22.07.2022.
 //
 
 import UIKit
 
 extension UIImage {
-    var averageColor: UIColor? {
-        guard let inputImage = CIImage(image: self) else { return nil }
-        let extentVector = CIVector(x: inputImage.extent.origin.x,
-                                    y: inputImage.extent.origin.y,
-                                    z: inputImage.extent.size.width,
-                                    w: inputImage.extent.size.height)
-
-        guard let filter = CIFilter(name: "CIAreaAverage",
-                                    parameters: [kCIInputImageKey: inputImage,
-                                                kCIInputExtentKey: extentVector]) else { return nil }
-        guard let outputImage = filter.outputImage else { return nil }
-
-        var bitmap = [UInt8](repeating: 0, count: 4)
-        let context = CIContext(options: [.workingColorSpace: kCFNull])
-        context.render(outputImage,
-                       toBitmap: &bitmap,
-                       rowBytes: 4,
-                       bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
-                       format: .RGBA8,
-                       colorSpace: nil)
-
-        return UIColor(red: CGFloat(bitmap[0]) / 255,
-                       green: CGFloat(bitmap[1]) / 255,
-                       blue: CGFloat(bitmap[2]) / 255,
-                       alpha: CGFloat(bitmap[3]) / 255)
+    func blurred(_ amount: CGFloat = 30.0) -> UIImage? {
+        guard let ciImg = CIImage(image: self) else { return nil }
+        let blur = CIFilter(name: "CIGaussianBlur")
+        blur?.setValue(ciImg, forKey: kCIInputImageKey)
+        blur?.setValue(amount, forKey: kCIInputRadiusKey)
+        if let outputImg = blur?.outputImage {
+            return UIImage(ciImage: outputImg)
+        }
+        return nil
     }
 }
+
+extension UIImageView {
+    func darken(_ amount: CGFloat = 0.6) {
+        let darkView = UIView()
+        darkView.backgroundColor = UIColor.black.withAlphaComponent(amount)
+        darkView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(darkView)
+        NSLayoutConstraint.activate([
+            darkView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            darkView.topAnchor.constraint(equalTo: self.topAnchor),
+            darkView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            darkView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
+}
+
+

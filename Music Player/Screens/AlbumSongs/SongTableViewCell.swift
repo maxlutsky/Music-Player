@@ -24,7 +24,7 @@ class SongTableViewCell: UITableViewCell {
         super.awakeFromNib()
         backgroundColor = .clear
         containerView.backgroundColor = Constants.itemColor
-        containerView.layer.cornerRadius = 10
+        containerView.layer.cornerRadius = Constants.cornerRadius
         selectionStyle = .none
     }
 

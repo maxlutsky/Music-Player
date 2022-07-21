@@ -15,13 +15,11 @@ class AlbumSongsViewController: UIViewController {
 
     private lazy var songs: [Song] = album.songs
 
-    private let formatter = DateComponentsFormatter()
-
     private let albumArtwork: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = Constants.cornerRadius
         return imageView
     }()
 
@@ -74,25 +72,25 @@ class AlbumSongsViewController: UIViewController {
     func setupConstraints() {
         view.addSubview(albumArtwork)
         NSLayoutConstraint.activate([
-            albumArtwork.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            albumArtwork.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            albumArtwork.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
+            albumArtwork.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.defaultSpacing),
             albumArtwork.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
             albumArtwork.heightAnchor.constraint(equalTo: albumArtwork.widthAnchor)
         ])
 
         view.addSubview(albumAuthor)
         NSLayoutConstraint.activate([
-            albumAuthor.leftAnchor.constraint(equalTo: albumArtwork.rightAnchor, constant: 10),
+            albumAuthor.leftAnchor.constraint(equalTo: albumArtwork.rightAnchor, constant: Constants.defaultSpacing),
             albumAuthor.topAnchor.constraint(equalTo: albumArtwork.topAnchor),
-            albumAuthor.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
-            albumAuthor.bottomAnchor.constraint(lessThanOrEqualTo: albumArtwork.bottomAnchor, constant: -10)
+            albumAuthor.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
+            albumAuthor.bottomAnchor.constraint(lessThanOrEqualTo: albumArtwork.bottomAnchor, constant: -Constants.defaultSpacing)
         ])
 
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            tableView.topAnchor.constraint(equalTo: albumArtwork.bottomAnchor, constant: 10),
-            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
+            tableView.topAnchor.constraint(equalTo: albumArtwork.bottomAnchor, constant: Constants.defaultSpacing),
+            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
@@ -104,11 +102,12 @@ extension AlbumSongsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         guard let cell = tableView.dequeueReusableCell(withIdentifier: kSongCellIdentifier) as? SongTableViewCell,
               indexPath.row < songs.count else { return UITableViewCell() }
         let song = songs[indexPath.row]
-        cell.setupCell(songName: song.name, songDuration: formatter.string(from: song.duration) ?? "", songNumber: indexPath.row + 1)
+        cell.setupCell(songName: song.name,
+                       songDuration: SongDurationFormatter.string(from: song.duration),
+                       songNumber: indexPath.row + 1)
         return cell
     }
 

@@ -15,8 +15,8 @@ class AlbumsViewController: UIViewController {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = Constants.defaultSpacing
+        layout.minimumInteritemSpacing = Constants.defaultSpacing
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,14 +31,15 @@ class AlbumsViewController: UIViewController {
         view.backgroundColor = Constants.backgroundColor
         title = kControllerTitle
         navigationController?.navigationBar.prefersLargeTitles = true
+        setupCollectionView()
+    }
 
+    func setupCollectionView() {
         view.addSubview(collectionView)
-
-
         NSLayoutConstraint.activate([
-            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.defaultSpacing),
+            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
@@ -50,12 +51,9 @@ class AlbumsViewController: UIViewController {
 
 extension AlbumsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let lay = collectionViewLayout as! UICollectionViewFlowLayout
-        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing/2
-
+        let widthPerItem = collectionView.frame.width / 2 - Constants.defaultSpacing/2
         return CGSize(width:widthPerItem, height:widthPerItem * 1.35)
     }
-
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         albums.count
@@ -76,6 +74,5 @@ extension AlbumsViewController: UICollectionViewDelegate, UICollectionViewDataSo
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-
 }
 
