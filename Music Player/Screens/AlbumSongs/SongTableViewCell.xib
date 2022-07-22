@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="KGk-i7-Jjw" customClass="SongTableViewCell" customModule="Music_Player" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="309" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="309" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QQ-CE-Awy">
+                        <rect key="frame" x="0.0" y="5" width="309" height="75"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0d6-4b-sfK">
+                                <rect key="frame" x="273.5" y="29" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B74-SS-BKv">
+                                <rect key="frame" x="47" y="27" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elm-l6-O72">
+                                <rect key="frame" x="0.0" y="27.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="B74-SS-BKv" firstAttribute="leading" secondItem="Elm-l6-O72" secondAttribute="trailing" constant="5" id="7hO-cc-Y2c"/>
+                            <constraint firstItem="Elm-l6-O72" firstAttribute="centerY" secondItem="8QQ-CE-Awy" secondAttribute="centerY" id="HgN-9e-wWT"/>
+                            <constraint firstItem="Elm-l6-O72" firstAttribute="leading" secondItem="8QQ-CE-Awy" secondAttribute="leading" id="LA4-Xu-ax9"/>
+                            <constraint firstItem="B74-SS-BKv" firstAttribute="centerY" secondItem="8QQ-CE-Awy" secondAttribute="centerY" id="M0Q-bv-Rc3"/>
+                            <constraint firstAttribute="trailing" secondItem="0d6-4b-sfK" secondAttribute="trailing" id="NfI-mG-3Cc"/>
+                            <constraint firstItem="0d6-4b-sfK" firstAttribute="centerY" secondItem="B74-SS-BKv" secondAttribute="centerY" id="b6r-44-h6Y"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="8QQ-CE-Awy" secondAttribute="trailing" id="0Md-bT-RNg"/>
+                    <constraint firstItem="8QQ-CE-Awy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FE3-aj-hCK"/>
+                    <constraint firstItem="8QQ-CE-Awy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="gji-Hv-NLn"/>
+                    <constraint firstAttribute="bottom" secondItem="8QQ-CE-Awy" secondAttribute="bottom" constant="5" id="qhX-AG-chC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="containerView" destination="8QQ-CE-Awy" id="mFe-aa-aJW"/>
+                <outlet property="songDuration" destination="0d6-4b-sfK" id="Rwi-l7-tNr"/>
+                <outlet property="songName" destination="B74-SS-BKv" id="YZr-o5-DcS"/>
+                <outlet property="songNumber" destination="Elm-l6-O72" id="X1t-ci-vKb"/>
+            </connections>
+            <point key="canvasLocation" x="-67.391304347826093" y="-18.415178571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
