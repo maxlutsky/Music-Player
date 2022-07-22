@@ -20,18 +20,24 @@ extension UIImage {
     }
 }
 
-extension UIImageView {
+extension UIView {
     func darken(_ amount: CGFloat = 0.6) {
         let darkView = UIView()
         darkView.backgroundColor = UIColor.black.withAlphaComponent(amount)
         darkView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(darkView)
-        NSLayoutConstraint.activate([
-            darkView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            darkView.topAnchor.constraint(equalTo: self.topAnchor),
-            darkView.rightAnchor.constraint(equalTo: self.rightAnchor),
-            darkView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
+        darkView.clipToSuperview()
+    }
+
+    func clipToSuperview() {
+        if let superView = self.superview {
+            NSLayoutConstraint.activate([
+                self.leftAnchor.constraint(equalTo: superView.leftAnchor),
+                self.topAnchor.constraint(equalTo: superView.topAnchor),
+                self.rightAnchor.constraint(equalTo: superView.rightAnchor),
+                self.bottomAnchor.constraint(equalTo: superView.bottomAnchor)
+            ])
+        }
     }
 }
 

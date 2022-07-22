@@ -72,12 +72,12 @@ class SongProgress: UIView {
             currentProgress.leftAnchor.constraint(equalTo: leftAnchor),
             currentProgress.topAnchor.constraint(equalTo: topAnchor),
             currentProgress.rightAnchor.constraint(equalTo: centerXAnchor),
-            currentProgress.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -10),
+            currentProgress.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -Constants.defaultSpacing),
 
             songDuration.leftAnchor.constraint(equalTo: centerXAnchor),
             songDuration.topAnchor.constraint(equalTo: topAnchor),
             songDuration.rightAnchor.constraint(equalTo: rightAnchor),
-            songDuration.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -10),
+            songDuration.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -Constants.defaultSpacing),
 
             progressView.leftAnchor.constraint(equalTo: leftAnchor),
             progressView.rightAnchor.constraint(equalTo: rightAnchor),

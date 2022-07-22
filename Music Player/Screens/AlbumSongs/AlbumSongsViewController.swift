@@ -72,25 +72,33 @@ class AlbumSongsViewController: UIViewController {
     func setupConstraints() {
         view.addSubview(albumArtwork)
         NSLayoutConstraint.activate([
-            albumArtwork.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
-            albumArtwork.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.defaultSpacing),
+            albumArtwork.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                               constant: Constants.defaultSpacing),
+            albumArtwork.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                              constant: Constants.defaultSpacing),
             albumArtwork.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
             albumArtwork.heightAnchor.constraint(equalTo: albumArtwork.widthAnchor)
         ])
 
         view.addSubview(albumAuthor)
         NSLayoutConstraint.activate([
-            albumAuthor.leftAnchor.constraint(equalTo: albumArtwork.rightAnchor, constant: Constants.defaultSpacing),
+            albumAuthor.leftAnchor.constraint(equalTo: albumArtwork.rightAnchor,
+                                              constant: Constants.defaultSpacing),
             albumAuthor.topAnchor.constraint(equalTo: albumArtwork.topAnchor),
-            albumAuthor.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
-            albumAuthor.bottomAnchor.constraint(lessThanOrEqualTo: albumArtwork.bottomAnchor, constant: -Constants.defaultSpacing)
+            albumAuthor.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                               constant: -Constants.defaultSpacing),
+            albumAuthor.bottomAnchor.constraint(lessThanOrEqualTo: albumArtwork.bottomAnchor,
+                                                constant: -Constants.defaultSpacing)
         ])
 
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
-            tableView.topAnchor.constraint(equalTo: albumArtwork.bottomAnchor, constant: Constants.defaultSpacing),
-            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
+            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                            constant: Constants.defaultSpacing),
+            tableView.topAnchor.constraint(equalTo: albumArtwork.bottomAnchor,
+                                           constant: Constants.defaultSpacing),
+            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                             constant: -Constants.defaultSpacing),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }

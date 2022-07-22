@@ -63,12 +63,7 @@ class VolumeSlider: UIView {
         volumeControlsStackView.addArrangedSubview(maxVolumeIcon)
 
         addSubview(volumeControlsStackView)
-        NSLayoutConstraint.activate([
-            volumeControlsStackView.leftAnchor.constraint(equalTo: leftAnchor),
-            volumeControlsStackView.topAnchor.constraint(equalTo: topAnchor),
-            volumeControlsStackView.rightAnchor.constraint(equalTo: rightAnchor),
-            volumeControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        volumeControlsStackView.clipToSuperview()
     }
 
 }

@@ -97,14 +97,8 @@ class PlaybackControls: UIView {
 
     func setupControlsStackView() {
         addSubview(controlsStackView)
-
-        NSLayoutConstraint.activate([
-            controlsStackView.leftAnchor.constraint(equalTo: leftAnchor),
-            controlsStackView.topAnchor.constraint(equalTo: topAnchor),
-            controlsStackView.rightAnchor.constraint(equalTo: rightAnchor),
-            controlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-
+        controlsStackView.clipToSuperview()
+        
         controlsStackView.addArrangedSubview(previousSong)
         controlsStackView.addArrangedSubview(playPause)
         controlsStackView.addArrangedSubview(nextSong)

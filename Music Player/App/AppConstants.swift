@@ -16,6 +16,7 @@ class Constants {
     static let defaultSpacing: CGFloat = 10
     static let headerFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .bold)
     static let cornerRadius: CGFloat = 10
+    static let invertedColor: UIColor? = UIColor(named: "Inverted")
 }
 
 

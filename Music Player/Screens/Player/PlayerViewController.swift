@@ -121,12 +121,7 @@ class PlayerViewController: UIViewController {
         backgroundImage.darken()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(backgroundImage)
-        NSLayoutConstraint.activate([
-            backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor),
-            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImage.rightAnchor.constraint(equalTo: view.rightAnchor),
-            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        backgroundImage.clipToSuperview()
     }
 
     func setupViews() {
@@ -134,8 +129,10 @@ class PlayerViewController: UIViewController {
         view.addSubview(albumArtwork)
         NSLayoutConstraint.activate([
             albumArtwork.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor),
-            albumArtwork.leftAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
-            albumArtwork.rightAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
+            albumArtwork.leftAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.leftAnchor,
+                                               constant: Constants.defaultSpacing),
+            albumArtwork.rightAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.rightAnchor,
+                                                constant: -Constants.defaultSpacing),
             albumArtwork.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             albumArtwork.widthAnchor.constraint(equalTo: albumArtwork.heightAnchor),
 

@@ -31,15 +31,19 @@ class AlbumsViewController: UIViewController {
         view.backgroundColor = Constants.backgroundColor
         title = kControllerTitle
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = Constants.invertedColor
         setupCollectionView()
     }
 
     func setupCollectionView() {
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: Constants.defaultSpacing),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.defaultSpacing),
-            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -Constants.defaultSpacing),
+            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                                 constant: Constants.defaultSpacing),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                constant: Constants.defaultSpacing),
+            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                                  constant: -Constants.defaultSpacing),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
